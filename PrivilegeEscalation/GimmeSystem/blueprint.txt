@@ -1,0 +1,30 @@
+----------------------------------- Inside Main program (Program.cs) -----------------------------------
+
+- Shell: cmd.exe and powershell
+- Page selection
+	- Checks: All vs Select
+	- Results: 
+		- ?
+- Send output files to Kali?
+- New shells: reverse & bind
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+------------------------------------- Privilege Escalation Checks  -------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------- User Exploits --------------------------------------------
+
+- whoami: End checks if SYSTEM or Administrator
+- whoami /groups:
+	- UAC: NT\Administrator Group and Mandatory level
+	- Token Impersonation: SeImpersonatePrivilege/Se + NT\Local Account (?)
+		- If account is NT\Local Account, should have SeImpersonatePrivilege by default
+	- Memberships of Special Groups / Special Privileges:
+		- NT\Administrators
+		- 
+- whoami /priv (some overlap with whoami /groups):
