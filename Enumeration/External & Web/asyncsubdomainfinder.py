@@ -79,16 +79,16 @@ async def main():
     global wordlist_len
     wordlist_len = len(wordlist)
     global position
-    """
-    coros1 = [async_checkSubdomainValidity(rs, currentword[:-1] + "." + args.domain, True) for currentword in wordlist]
-    res = await asyncio.gather(*coros1, return_exceptions=True)
-    for currentsubdomain in res:
-        if currentsubdomain and currentsubdomain not in finalsubdomainlist:
-            finalsubdomainlist.append(currentsubdomain)
-    """
+
+#    coros1 = [async_checkSubdomainValidity(rs, currentword[:-1] + "." + args.domain, True) for currentword in wordlist]
+#    res = await asyncio.gather(*coros1, return_exceptions=True)
+#    for currentsubdomain in res:
+#        if currentsubdomain and currentsubdomain not in finalsubdomainlist:
+#            finalsubdomainlist.append(currentsubdomain)
+
     while position < wordlist_len: # CHECK condition
-        if position + 200 < wordlist_len: # Check condition
-            coros1 = [async_checkSubdomainValidity(rs, currentword[:-1] + "." + args.domain, True) for currentword in wordlist[position:position + 200]]
+        if position + 20 < wordlist_len: # Check condition
+            coros1 = [async_checkSubdomainValidity(rs, currentword[:-1] + "." + args.domain, True) for currentword in wordlist[position:position + 20]]
         else:
             coros1 = [async_checkSubdomainValidity(rs, currentword[:-1] + "." + args.domain, True) for currentword in wordlist[position:wordlist_len]]
         res = await asyncio.gather(*coros1, return_exceptions=True)
@@ -98,8 +98,8 @@ async def main():
         position += 200
         print("\r", end="")
         print("Bruteforcing subdomains: " + str(position/wordlist_len * 100) + "%. Current position: " + str(position), end="")
-        time.sleep(2)
-    
+        time.sleep(1)
+   
 
     # Gathering subdomains from certificates on crt.sh
     responseBody = getcrtshContent(args.domain)
